@@ -1,10 +1,19 @@
 <template>
-    <div>
+    <div class="parent-form-div">
       <form>
         <h1>Find your coach</h1>
-        <input type="checkbox" name="Frontend" id="a">
-        <input type="checkbox" name="Backend" id="b">
-        <input type="checkbox" name="Career" id="c">
+        <div class="label-div">
+            <input type="checkbox" name="Frontend">
+            <label for="Frontend">FrontEnd</label>
+        </div>
+        <div class="label-div">
+            <input type="checkbox" name="Backend" id="b">
+            <label for="Backend">Backend</label>
+        </div>
+        <div class="label-div">
+            <input type="checkbox" name="Career" id="c">
+            <label for="Career">Career</label>
+        </div>
       </form>
     </div>
 </template>
@@ -14,7 +23,13 @@
 </script>
 
 <style scoped>
- div{
-    box-shadow: inset 0 0 20px #000000;
+ .parent-form-div{
+    box-shadow: inset 0 0 10px #9b9b9b;
+    border-radius: 10px;
+    padding: 20px;
+ }
+ .label-div{
+    margin: 10px;
+    display: inline-block;
  }
 </style>
