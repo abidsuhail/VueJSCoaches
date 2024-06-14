@@ -1,16 +1,12 @@
 <template>
     <TheHeader></TheHeader>
-    <div>
-      <router-view></router-view>
-    </div>
+    <BaseRouter></BaseRouter>
 </template>
 <script>
-
+import BaseRouter from './components/BaseRouter.vue';
+export default {
+  components:{BaseRouter}
+}
 </script>
 <style scoped>
-div{
-    margin: auto;
-    width: 50%;
-    padding: 10px;
-}
 </style>
