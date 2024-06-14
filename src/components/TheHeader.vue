@@ -3,20 +3,20 @@
         <h1>Find a coach</h1>
         <div>
             <router-link :to="coachesRoute">All Coaches</router-link>
-            <router-link :to="homeRoute">Requests</router-link>
+            <router-link :to="requestsRoute">Requests</router-link>
         </div>
     </div>
 </template>
 
 <script>
-import RoutesName from '../utils/RouteConfig.js'
+import RoutesName from '../router/routerConfig.js'
 export default {
     computed:{
         coachesRoute(){
             return { name:RoutesName.ALL_COACHES.name }
         },
-        homeRoute(){
-            return { name:RoutesName.HOME.name }
+        requestsRoute(){
+            return { name:RoutesName.COACH_REQUESTS.name }
         }
     }
 }

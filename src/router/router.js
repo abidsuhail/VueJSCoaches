@@ -1,5 +1,5 @@
 import { createWebHistory, createRouter } from 'vue-router'
-import RouteConfig from '../utils/RouteConfig.js'
+import RouteConfig from './routerConfig.js'
 const routes = []
 Object.values(RouteConfig).forEach((route) => {
     routes.push(route)
