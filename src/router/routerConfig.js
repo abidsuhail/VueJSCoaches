@@ -1,5 +1,6 @@
 import AllCoaches from '../pages/AllCoaches.vue'
 import CoachRequests from '../pages/CoachRequests.vue';
+import ContactCoach from '../pages/ContactCoach.vue';
 const routes = {
     ALL_COACHES: {
       path:"/allCoaches",
@@ -15,6 +16,12 @@ const routes = {
       path:"/requests",
       name : "requests-route",
       component:CoachRequests
+    },
+    CONTACT_COACH: {
+      path:"/contactCoach/:coachId",
+      name : "contact-coach-route",
+      component:ContactCoach,
+      props:true
     }
 };
 Object.freeze(routes)

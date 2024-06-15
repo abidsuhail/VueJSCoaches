@@ -1,7 +1,7 @@
 <template>
     <FindCoach @form_checkbox="onFormCheckbox"></FindCoach>
     <div id="coach-list-container">
-      <button>Refresh</button>
+      <button @click="fetchCoaches">Refresh</button>
       <CoachListItem v-for="coach in coaches" :key="coach.id" :coach="coach"></CoachListItem>
     </div>
 </template>
@@ -9,6 +9,7 @@
 <script>
 import FindCoach from '../components/FindCoach.vue'
 import CoachListItem from '../components/CoachListItem.vue'
+import { getCoaches } from '../utils/firebaseHelper';
 export default {
     components:{
         FindCoach,
@@ -16,13 +17,25 @@ export default {
     },
     data(){
         return{
-            coaches:[
-                {id:1,title:"Abid Suhail",time:"12:45",skills:["FrontEnd","BackEnd"]},
-                {id:2,title:"Arish Suhail",time:"1:45",skills:["FrontEnd"]}
-            ]
+            coaches:[]
         }
     },
+    created(){
+        /* this.coaches.forEach(coach=>{
+            saveCoach(coach)
+        }) */
+       
+       this.fetchCoaches()
+    },
     methods:{
+        fetchCoaches(){
+            console.log("Fetching coaches.......")
+            getCoaches().then(data=>{
+                if(data!=null){
+                    this.coaches = data.filter(a => a!=null)
+                }
+            })
+        },
         onFormCheckbox(checkboxes){
             const selectedSkills = []
             const coachesFinal = [
