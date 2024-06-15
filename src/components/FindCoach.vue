@@ -3,15 +3,15 @@
       <form>
         <h1>Find your coach</h1>
         <div class="label-div">
-            <input type="checkbox" name="Frontend" value="f" v-model="form_checkbox">
+            <input type="checkbox" name="FrontEnd" value="FrontEnd" v-model="form_checkbox">
             <label for="Frontend">FrontEnd</label>
         </div>
         <div class="label-div">
-            <input type="checkbox" name="Backend" value="b" v-model="form_checkbox">
+            <input type="checkbox" name="BackEnd" value="BackEnd" v-model="form_checkbox">
             <label for="Backend">Backend</label>
         </div>
         <div class="label-div">
-            <input type="checkbox" name="Career" value="c" v-model="form_checkbox">
+            <input type="checkbox" name="Career" value="Career" v-model="form_checkbox">
             <label for="Career">Career</label>
         </div>
       </form>
@@ -20,6 +20,7 @@
 
 <script>
 export default {
+    emits:["form_checkbox"],
     data(){
         return {
             form_checkbox:[]
@@ -27,7 +28,7 @@ export default {
     },
     watch:{
         form_checkbox(newVal){
-            console.log(newVal)
+            this.$emit("form_checkbox",newVal)
         }
     }
 }

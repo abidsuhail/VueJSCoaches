@@ -1,8 +1,8 @@
 <template>
-    <FindCoach></FindCoach>
+    <FindCoach @form_checkbox="onFormCheckbox"></FindCoach>
     <div id="coach-list-container">
       <button>Refresh</button>
-      <CoachListItem v-for="coach in coaches" :key="coach.title" :coach="coach"></CoachListItem>
+      <CoachListItem v-for="coach in coaches" :key="coach.id" :coach="coach"></CoachListItem>
     </div>
 </template>
 
@@ -17,9 +17,39 @@ export default {
     data(){
         return{
             coaches:[
-                {title:"Abid Suhail",time:"12:45",skills:["FrontEnd","BackEnd"]},
-                {title:"Arish Suhail",time:"1:45",skills:["FrontEnd"]}
+                {id:1,title:"Abid Suhail",time:"12:45",skills:["FrontEnd","BackEnd"]},
+                {id:2,title:"Arish Suhail",time:"1:45",skills:["FrontEnd"]}
             ]
+        }
+    },
+    methods:{
+        onFormCheckbox(checkboxes){
+            const selectedSkills = []
+            const coachesFinal = [
+                {id:1,title:"Abid Suhail",time:"12:45",skills:["FrontEnd","BackEnd"]},
+                {id:2,title:"Arish Suhail",time:"1:45",skills:["FrontEnd"]}
+            ]
+            this.coaches.forEach(coach=>{
+                checkboxes.forEach(checkbox=>{
+                    if(coach.skills.includes(checkbox) && !selectedSkills.includes(coach)){
+                        selectedSkills.unshift(coach)
+                   }
+                })               
+            })
+            if(checkboxes.length > 0){
+                if(selectedSkills.length > 0){
+                    this.coaches = selectedSkills
+                }else{
+                    this.coaches = []
+                }
+           }else{
+                this.coaches = coachesFinal
+           }
+            console.log("checkbox clicked",checkboxes);
+            console.log("selected skills",selectedSkills);
+            console.log("coaches",this.coaches);
+
+
         }
     }
 }
