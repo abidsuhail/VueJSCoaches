@@ -9,7 +9,6 @@ export default {
     methods:{
         getCoach(){
             getCoachById(this.coachId).then(coach=>{
-                console.log(coach)
                 this.coach = coach[this.coachId]
             })
         }
