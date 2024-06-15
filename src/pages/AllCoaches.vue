@@ -1,9 +1,11 @@
 <template>
     <FindCoach @form_checkbox="onFormCheckbox"></FindCoach>
-    <div id="coach-list-container">
+    <div v-if="coaches.length>0" id="coach-list-container">
       <button @click="fetchCoaches">Refresh</button>
       <CoachListItem v-for="coach in coaches" :key="coach.id" :coach="coach"></CoachListItem>
     </div>
+    <LoadingView v-else></LoadingView>
+
 </template>
 
 <script>
@@ -13,7 +15,7 @@ import { getCoaches } from '../utils/firebaseHelper';
 export default {
     components:{
         FindCoach,
-        CoachListItem
+        CoachListItem,
     },
     data(){
         return{
@@ -30,6 +32,7 @@ export default {
     methods:{
         fetchCoaches(){
             console.log("Fetching coaches.......")
+            this.coaches = []
             getCoaches().then(data=>{
                 if(data!=null){
                     this.coaches = data.filter(a => a!=null)
@@ -75,4 +78,5 @@ export default {
     padding: 20px;
     margin-top: 10px;
  }
+
 </style>

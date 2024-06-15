@@ -1,5 +1,6 @@
 <template>
     <h1 v-if="coach">Contact coach {{coach.id}} - {{ coach.title}}</h1>
+    <LoadingView v-else></LoadingView>
 </template>
 
 <script>
