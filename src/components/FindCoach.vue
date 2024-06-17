@@ -1,5 +1,5 @@
 <template>
-    <div class="parent-form-div">
+    <BaseCard>
       <form>
         <h1>Find your coach</h1>
         <div class="label-div">
@@ -15,7 +15,7 @@
             <label for="Career">Career</label>
         </div>
       </form>
-    </div>
+    </BaseCard>
 </template>
 
 <script>
@@ -35,11 +35,6 @@ export default {
 </script>
 
 <style scoped>
- .parent-form-div{
-    box-shadow: inset 0 0 10px #9b9b9b;
-    border-radius: 10px;
-    padding: 20px;
- }
  .label-div{
     margin: 10px;
     display: inline-block;

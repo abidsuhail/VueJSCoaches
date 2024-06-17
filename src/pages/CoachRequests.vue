@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import {getCoachesContact} from '../controller/ContactUsController.js'
 export default {
    
 }

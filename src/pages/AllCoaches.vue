@@ -1,9 +1,9 @@
 <template>
     <FindCoach @form_checkbox="onFormCheckbox"></FindCoach>
-    <div v-if="coaches.length>0" id="coach-list-container">
+    <BaseCard v-if="coaches.length>0">
       <button @click="fetchCoaches">Refresh</button>
       <CoachListItem v-for="coach in coaches" :key="coach.id" :coach="coach"></CoachListItem>
-    </div>
+    </BaseCard>
     <LoadingView v-else></LoadingView>
 
 </template>
@@ -11,7 +11,7 @@
 <script>
 import FindCoach from '../components/FindCoach.vue'
 import CoachListItem from '../components/CoachListItem.vue'
-import { getCoaches } from '../utils/firebaseHelper';
+import { getCoaches } from '../controller/CoachController';
 export default {
     components:{
         FindCoach,
@@ -70,13 +70,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-#coach-list-container{
-    box-shadow: inset 0 0 10px #9b9b9b;
-    border-radius: 10px;
-    padding: 20px;
-    margin-top: 10px;
- }
-
-</style>
