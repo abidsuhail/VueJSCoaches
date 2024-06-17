@@ -3,12 +3,12 @@
         <h2>{{coach.title}}</h2>
         <h3>${{coach.time}}/hour</h3>
     </BaseCard>
-    <BaseCard v-if="coach">
+    <BaseCard v-if="coach && !isFormSubLoading">
         <h2>Interested? Reach out now!</h2>
         <form @submit.prevent="onFormSubmitClicked">
             <div class="label-div">
                 <p>Your Email</p>
-                <input type="email" placeholder="Enter email" v-model="email"/>
+                <input type="text" placeholder="Enter email" v-model="email"/>
             </div>
             <div class="label-div">
                 <p>Message</p>
@@ -24,6 +24,7 @@
 <script>
 import {getCoachById} from '../controller/CoachController.js'
 import {saveCoachContact} from '../controller/ContactUsController.js'
+import routerConfig from '../router/routerConfig.js'
 export default {
     props:["coachId"],
     methods:{
@@ -33,10 +34,16 @@ export default {
             })
         },
         onFormSubmitClicked(){
+            this.isFormSubLoading=true
            saveCoachContact({
             id:this.coachId,
             email:this.email,
             message:this.message
+           }).then(()=> {
+                this.isFormSubLoading=false
+                this.$router.push({name:routerConfig.ALL_COACHES.name})
+           }).catch(()=>{
+               this.isFormSubLoading=false
            })
         }
     },
@@ -44,7 +51,8 @@ export default {
         return {
             coach:null,
             email:"",
-            message:""
+            message:"",
+            isFormSubLoading:false
         }
     },
     created(){

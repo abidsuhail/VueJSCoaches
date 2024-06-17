@@ -8,8 +8,9 @@ const routes = {
       component:AllCoaches
     },
     HOME: {
-      path:"/home",
+      path:"/",
       name : "home-route",
+      redirect:"/allCoaches",
       component:AllCoaches
     },
     COACH_REQUESTS: {
