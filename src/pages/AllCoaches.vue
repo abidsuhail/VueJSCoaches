@@ -1,10 +1,10 @@
 <template>
     <FindCoach @form_checkbox="onFormCheckbox"></FindCoach>
-    <BaseCard v-if="coaches.length>0">
+    <BaseCard v-if="!isLoading">
       <button @click="fetchCoaches">Refresh</button>
-      <CoachListItem v-for="coach in coaches" :key="coach.id" :coach="coach"></CoachListItem>
+      <CoachListItem v-for="coach in fliteredCoaches" :key="coach.id" :coach="coach"></CoachListItem>
     </BaseCard>
-    <LoadingView v-else></LoadingView>
+    <LoadingView v-if="isLoading"></LoadingView>
 
 </template>
 
@@ -19,7 +19,10 @@ export default {
     },
     data(){
         return{
-            coaches:[]
+            coaches:[],
+            isLoading:false,
+            checkboxesGlobal:[],
+            fliteredCoaches:[]
         }
     },
     created(){
@@ -31,21 +34,31 @@ export default {
     },
     methods:{
         fetchCoaches(){
+            this.isLoading = true
             console.log("Fetching coaches.......")
             this.coaches = []
-            getCoaches().then(data=>{
+            getCoaches().then((data)=>{
                 if(data!=null){
                     this.coaches = data.filter(a => a!=null)
                 }
+                this.isLoading = false
+                this.fliteredCoaches = this.coaches
+                this.onFormCheckbox(this.checkboxesGlobal)
+            }).catch((e)=>{
+                alert(e)
+                this.isLoading = false
             })
         },
         onFormCheckbox(checkboxes){
+            console.log("onFormCheckbox",checkboxes)
+            this.checkboxesGlobal = checkboxes
             const selectedSkills = []
             const coachesFinal = [
                 {id:1,title:"Abid Suhail",time:"12:45",skills:["FrontEnd","BackEnd"]},
                 {id:2,title:"Arish Suhail",time:"1:45",skills:["FrontEnd"]}
             ]
-            this.coaches.forEach(coach=>{
+            this.fliteredCoaches = this.coaches
+            this.fliteredCoaches.forEach(coach=>{
                 checkboxes.forEach(checkbox=>{
                     if(coach.skills.includes(checkbox) && !selectedSkills.includes(coach)){
                         selectedSkills.unshift(coach)
@@ -54,18 +67,17 @@ export default {
             })
             if(checkboxes.length > 0){
                 if(selectedSkills.length > 0){
-                    this.coaches = selectedSkills
+                    this.fliteredCoaches = selectedSkills
                 }else{
-                    this.coaches = []
+                    this.fliteredCoaches = []
                 }
            }else{
-                this.coaches = coachesFinal
+                this.fliteredCoaches = coachesFinal
            }
-            console.log("checkbox clicked",checkboxes);
+/*             console.log("checkbox clicked",checkboxes);
             console.log("selected skills",selectedSkills);
             console.log("coaches",this.coaches);
-
-
+ */        console.log("coaches",this.coaches);
         }
     }
 }
