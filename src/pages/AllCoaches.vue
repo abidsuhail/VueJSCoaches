@@ -21,15 +21,19 @@ export default {
         return{
             coaches:[],
             isLoading:false,
+            coachesFinal:[
+                {id:1,title:"Abid Suhail",time:"12:45",skills:["FrontEnd","BackEnd"]},
+                {id:2,title:"Arish Suhail",time:"1:45",skills:["FrontEnd"]},
+                {id:3,title:"Tim Buchalka",time:"1:45",skills:["Career"]}
+            ],
             checkboxesGlobal:[],
             fliteredCoaches:[]
         }
     },
     created(){
-        /* this.coaches.forEach(coach=>{
+        /* this.coachesFinal.forEach(coach=>{
             saveCoach(coach)
         }) */
-       
        this.fetchCoaches()
     },
     methods:{
@@ -53,10 +57,6 @@ export default {
             console.log("onFormCheckbox",checkboxes)
             this.checkboxesGlobal = checkboxes
             const selectedSkills = []
-            const coachesFinal = [
-                {id:1,title:"Abid Suhail",time:"12:45",skills:["FrontEnd","BackEnd"]},
-                {id:2,title:"Arish Suhail",time:"1:45",skills:["FrontEnd"]}
-            ]
             this.fliteredCoaches = this.coaches
             this.fliteredCoaches.forEach(coach=>{
                 checkboxes.forEach(checkbox=>{
@@ -72,7 +72,7 @@ export default {
                     this.fliteredCoaches = []
                 }
            }else{
-                this.fliteredCoaches = coachesFinal
+                this.fliteredCoaches = this.coachesFinal
            }
 /*             console.log("checkbox clicked",checkboxes);
             console.log("selected skills",selectedSkills);
