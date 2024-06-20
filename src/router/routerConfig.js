@@ -1,11 +1,18 @@
 import AllCoaches from '../pages/AllCoaches.vue'
 import CoachRequests from '../pages/CoachRequests.vue';
 import ContactCoach from '../pages/ContactCoach.vue';
+import AddNewCoach from '../pages/AddNewCoach.vue';
+
 const routes = {
     ALL_COACHES: {
       path:"/allCoaches",
       name : "all-coaches-route",
       component:AllCoaches
+    },
+    ADD_NEW_COACH: {
+      path:"/addNewCoach",
+      name : "add-new-coach-route",
+      component:AddNewCoach
     },
     HOME: {
       path:"/",

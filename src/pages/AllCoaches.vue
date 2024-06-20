@@ -21,11 +21,6 @@ export default {
         return{
             coaches:[],
             isLoading:false,
-            coachesFinal:[
-                {id:1,title:"Abid Suhail",time:"12:45",skills:["FrontEnd","BackEnd"]},
-                {id:2,title:"Arish Suhail",time:"1:45",skills:["FrontEnd"]},
-                {id:3,title:"Tim Buchalka",time:"1:45",skills:["Career"]}
-            ],
             checkboxesGlobal:[],
             fliteredCoaches:[]
         }
@@ -42,14 +37,14 @@ export default {
             console.log("Fetching coaches.......")
             this.coaches = []
             getCoaches().then((data)=>{
-                if(data!=null){
-                    this.coaches = data.filter(a => a!=null)
-                }
+                this.coaches = Object.values(data).filter((c)=>c!==null);
                 this.isLoading = false
                 this.fliteredCoaches = this.coaches
+                console.log("-----------------------------",this.fliteredCoaches)
                 this.onFormCheckbox(this.checkboxesGlobal)
             }).catch((e)=>{
-                alert(e)
+               //alert(e)
+                console.log(e)
                 this.isLoading = false
             })
         },
@@ -72,12 +67,9 @@ export default {
                     this.fliteredCoaches = []
                 }
            }else{
-                this.fliteredCoaches = this.coachesFinal
+                this.fliteredCoaches = this.coaches
            }
-/*             console.log("checkbox clicked",checkboxes);
-            console.log("selected skills",selectedSkills);
             console.log("coaches",this.coaches);
- */        console.log("coaches",this.coaches);
         }
     }
 }

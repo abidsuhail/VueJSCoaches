@@ -24,7 +24,7 @@ export default {
             getCoachesContact().then(data=>{
                 console.log(data)
                 if(data!=null){
-                    this.contactUs = data.filter(a => a!=null)
+                    this.contactUs = Object.values(data).filter(a => a!=null)
                 }
             })
         },

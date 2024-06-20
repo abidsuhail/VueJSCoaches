@@ -4,6 +4,7 @@
         <div>
             <router-link :to="coachesRoute">All Coaches</router-link>
             <router-link :to="requestsRoute">Requests</router-link>
+            <router-link :to="addNewCoachRoute">Add New Coach</router-link>
         </div>
     </div>
 </template>
@@ -17,6 +18,9 @@ export default {
         },
         requestsRoute(){
             return { name:RoutesName.COACH_REQUESTS.name }
+        },
+        addNewCoachRoute(){
+            return { name:RoutesName.ADD_NEW_COACH.name }
         }
     }
 }
@@ -47,7 +51,7 @@ a{
     margin-right: 10px;
     display: inline-block;
     text-align: center;
-    width: 100px;
+    width: 115px;
 }
 .router-link-active{
     border: 1px gold solid;
