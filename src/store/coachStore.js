@@ -1,9 +1,14 @@
-import { createStore } from 'vuex'
-export default createStore({
-    state:{
-
-    },
-    actions:{
-
+export default {
+    namespaced: true,
+        state:{
+        },
+        getters:{
+            
+        },
+        mutations:{
+           
+        },
+        actions:{
+           
+        }
     }
-})

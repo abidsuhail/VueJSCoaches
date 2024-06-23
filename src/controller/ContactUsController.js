@@ -1,9 +1,9 @@
 import instance from "../utils/FirebaseDBInstance"
 export async function saveCoachContact(params) {
-   return instance.put(`coaches_contact/${params.id}.json`,params)
+   return instance.put(`coaches_contact/${params.id}.json?auth=${params.authToken}`,params)
 }
-export async function getCoachesContact() {
-   const response =  (await instance.get(`coaches_contact.json`))
+export async function getCoachesContact(authToken) {
+   const response =  (await instance.get(`coaches_contact.json?auth=${authToken}`))
    return response.data
 }
 export async function getCoachContactById(coachId) {

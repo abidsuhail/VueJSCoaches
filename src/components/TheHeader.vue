@@ -1,10 +1,13 @@
 <template>
     <div id="header">
         <h1>Find a coach</h1>
+        <h1 v-if="$store.getters['auth/isLoggedIn']">Welcome User</h1>
         <div>
             <router-link :to="coachesRoute">All Coaches</router-link>
-            <router-link :to="requestsRoute">Requests</router-link>
-            <router-link :to="addNewCoachRoute">Add New Coach</router-link>
+            <router-link  v-if="this.isLoggedIn()" :to="requestsRoute">Requests</router-link>
+            <router-link  v-if="this.isLoggedIn()" :to="addNewCoachRoute">Add New Coach</router-link>
+            <router-link :to="authRoute">{{loginCaption}}</router-link>
+            
         </div>
     </div>
 </template>
@@ -21,6 +24,18 @@ export default {
         },
         addNewCoachRoute(){
             return { name:RoutesName.ADD_NEW_COACH.name }
+        },
+        authRoute(){
+            return { name:RoutesName.AUTH.name }
+        },
+        loginCaption(){
+            return this.isLoggedIn()? 'Logout' : 'Login/Signup'
+        },
+        
+    },
+    methods:{
+        isLoggedIn(){
+            return this.$store.getters['auth/isLoggedIn']
         }
     }
 }

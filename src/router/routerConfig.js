@@ -2,8 +2,13 @@ import AllCoaches from '../pages/AllCoaches.vue'
 import CoachRequests from '../pages/CoachRequests.vue';
 import ContactCoach from '../pages/ContactCoach.vue';
 import AddNewCoach from '../pages/AddNewCoach.vue';
-
+import Auth from '../pages/Auth.vue';
 const routes = {
+    AUTH: {
+      path:"/auth",
+      name : "auth-route",
+      component:Auth
+    },
     ALL_COACHES: {
       path:"/allCoaches",
       name : "all-coaches-route",

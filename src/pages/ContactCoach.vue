@@ -38,7 +38,8 @@ export default {
            saveCoachContact({
             id:this.coachId,
             email:this.email,
-            message:this.message
+            message:this.message,
+            authToken:this.$store.getters["auth/getAuthToken"]
            }).then(()=> {
                 this.isFormSubLoading=false
                 this.$router.push({name:routerConfig.ALL_COACHES.name})

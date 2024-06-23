@@ -21,7 +21,7 @@ export default {
     fetchContactUs(){
             console.log("Fetching contact us.......")
             this.contactUs = []
-            getCoachesContact().then(data=>{
+            getCoachesContact(this.$store.getters["auth/getAuthToken"]).then(data=>{
                 console.log(data)
                 if(data!=null){
                     this.contactUs = Object.values(data).filter(a => a!=null)

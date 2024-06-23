@@ -43,7 +43,8 @@ export default {
                 id : this.getRandomNumber(),
                 skills : this.formCheckbox,
                 time : "12:05",
-                title : this.name
+                title : this.name,
+                authToken: this.$store.getters["auth/getAuthToken"]
             }).then(()=>{
                 this.isLoading = false
                 this.$router.push({name:routerConfig.ALL_COACHES.name})
