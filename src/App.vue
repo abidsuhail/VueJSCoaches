@@ -14,5 +14,9 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
+body,html{
+  margin: 0px;
+  padding: 0px;
+}
 </style>
