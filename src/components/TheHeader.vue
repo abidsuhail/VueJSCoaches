@@ -6,7 +6,8 @@
             <router-link :to="coachesRoute">All Coaches</router-link>
             <router-link  v-if="this.isLoggedIn()" :to="requestsRoute">Requests</router-link>
             <router-link  v-if="this.isLoggedIn()" :to="addNewCoachRoute">Add New Coach</router-link>
-            <router-link :to="authRoute">{{loginCaption}}</router-link>
+            <router-link :to="authRoute" v-if="!this.isLoggedIn()">{{loginCaption}}</router-link>
+            <button v-if="this.isLoggedIn()" @click="logout()">Logout</button>
             
         </div>
     </div>
@@ -36,6 +37,9 @@ export default {
     methods:{
         isLoggedIn(){
             return this.$store.getters['auth/isLoggedIn']
+        },
+        logout(){
+            this.$store.dispatch('auth/logout')
         }
     }
 }

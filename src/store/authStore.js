@@ -19,6 +19,9 @@ export default {
     actions:{
         setAuthToken(context,authToken){
             context.commit('setAuthToken',authToken)
+        },
+        logout(context){
+            context.commit('setAuthToken',null)
         }
     }
 }
