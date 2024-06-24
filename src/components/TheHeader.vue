@@ -40,6 +40,7 @@ export default {
         },
         logout(){
             this.$store.dispatch('auth/logout')
+            this.$router.push(this.coachesRoute)
         }
     }
 }

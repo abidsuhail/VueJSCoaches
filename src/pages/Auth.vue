@@ -20,6 +20,7 @@
 
 <script>
 import {signIn,signUp} from '../controller/AuthController'
+import routerConfig from '../router/routerConfig'
 export default {
     data(){
         return{
@@ -40,6 +41,7 @@ export default {
                 //login
                 const authToken = await signIn(reqParams)
                 this.$store.commit('auth/setAuthToken',authToken)
+                this.$router.replace({name:routerConfig.ALL_COACHES.name})
             }else{
                 //signup
                 signUp(reqParams)

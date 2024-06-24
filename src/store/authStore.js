@@ -13,6 +13,7 @@ export default {
     },
     mutations:{
         setAuthToken(state,authToken){
+            localStorage.setItem("authToken",authToken)
             state.authToken = authToken
         }
     },
